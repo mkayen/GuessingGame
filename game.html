@@ -28,7 +28,7 @@
 
   </head>
 
-  <body>
+  <body onload='randomNumGen()'>
 
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
@@ -43,7 +43,7 @@
       <div class="starter-template">
         <h1>Guess the Number</h1>
         <p class="lead">You'll have 5 chances to Guess a number 1 to 100<br>There will be some hints along the way.</p>
-     	<div id="gameForm">
+     	  <div id="gameForm">
             <div class="input-group input-group-lg">
                 <input id = "numberForm" type="text"> </input><br><br>
                 <button type="button" class="btn btn-primary">Guess</button>
@@ -53,7 +53,8 @@
       </div>
 
     <h2 id="result"></h2>
-    <p id="testingArea"></p>
+    
+    <p id="testingArea"><u>Logs<br></u></p>
 
 
     </div><!-- /.container -->
