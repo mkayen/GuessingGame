@@ -1,14 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
     
-    <link rel="icon" href="../../favicon.ico">
-
     <title>Guess the Number</title>
 
     <!-- Bootstrap core CSS -->
@@ -22,61 +15,47 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
+    <!-- jQuery & BootStrap Core Files
+    ================================================== -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+
     <!-- Max's Custom Javascript File -->
+    <script src="jQueryCustom.js"> </script>
     <script src="application.js"> </script>
-  
+
+    <!-- Test jQuery [Move to jQueryCustom.js when working] -->
+
   </head>
 
-  <body onload="randomNumGen()">
+  <body>
 
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
           <a class="navbar-brand" href="#">Guess the Number</a>
         </div>
       </div>
     </nav>
 
-    <div class="container">
+    <div class="container" onload="">
 
       <div class="starter-template">
         <h1>Guess the Number</h1>
         <p class="lead">You'll have 5 chances to Guess a number 1 to 100<br>There will be some hints along the way.</p>
      	<div id="gameForm">
             <div class="input-group input-group-lg">
-                <input id = "numberForm" type="text" class="form-control" placeholder="Number"> </input><br><br>
+                <input id = "numberForm" type="text"> </input><br><br>
                 <button type="button" class="btn btn-primary">Guess</button>
-    		    <button type="button" class="btn btn-default">Hint</button>
+    		        <button type="button" class="btn btn-default">Hint</button>
             </div>
         </div>
       </div>
 
-    <p id="demo"></p>
+    <h2 id="result"></h2>
+    <p id="testingArea"></p>
 
 
     </div><!-- /.container -->
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-  
-    <!-- jQuery & Javascript files
-    ================================================== -->
-
-    <!-- Referencing jQuery via CDN -->
-    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
   </body>
 </html>
