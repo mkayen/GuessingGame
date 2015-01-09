@@ -3,21 +3,22 @@
 var randomNumber = Math.floor((Math.random() * 100) + 1);
 var randomArray = [];
 var guessArray = [];
-	// in game array,[0] is the random gen, [1] is the guess1
-	// further guesses follow this format.
 
 // JQUERY EVENT HANDLERS ------------------------------
 
 $(document).ready(function(){
-	
-	// EH1 - Display random number within testNumber (HTML ID)
-	//	$('.btn-primary').on('load', randomNumGen);
 
-	// EH2 - Retrieve value of input once guess is pressed.
+	// Retrieve value of input once guess is pressed.
 		$('.btn-primary').on('click', readTheHand);
 
-	// EH3 - Checks guess & randomNumber for a match.
+	// Checks guess & randomNumber for a match.
 		$('.btn-primary').on('click', guessAttempt);
+
+	// Generates hint when hint button is pressed
+		$('.btn-default').on('click', hint);
+
+	// Tells user if guess is hot
+		$('.btn-primary').on('click', heat);
 
 });
 
@@ -27,7 +28,7 @@ $(document).ready(function(){
 	//					In the testingArea.
 
 	function logFunction(result){
-		$('#testingArea').append(result);
+		$('#testingArea').text(result);
 	};
 
 	// randomNumGen: 	Generates Random Number, plugs number into array
@@ -44,40 +45,60 @@ $(document).ready(function(){
 	function readTheHand(){
 		var guess = +$('#numberForm').val();
 		guessArray.push(guess)
-		logFunction('<br>Guess equals '+guess+'.<br>');
+		logFunction('Guesses so far: '+guessArray);
 	};
 
-	// attempt1: 		if guess & randomNumber are equal, then the user
-	//					wins. Otherwise, the user loses.
-
-	function attempt1(){
-		$('#testingArea').append('Random Array: '+randomArray+'<br>');
-		$('#testingArea').append('Random Number: '+randomArray[0]+'<br>');
-		$('#testingArea').append('Guess Array '+guessArray+'<br>');
-		$('#testingArea').append('Guess1: '+guessArray[0]+'<br>');
-		$('#testingArea').append('Guess Array Length: '+guessArray.length+'<br>');
-		
-		if(randomArray[0] === guessArray[0]){
-			$('#result').text('Guess is Correct!')
+	function highOrLow(number){
+		if(number<randomArray){
+			$('#result').text('Incorrect. The number is higher.')
 		}else{
-			$('#result').text('Guess is Incorrect. Keep trying, or maybe a hint can help!')
-			}
+			$('#result').text('Incorrect. The number is lower.')
+			console.log()
+		}
 	};
-
+		
 	// guessAttempt: 	First I want to check if the guessArray is less than
 	//					a length of 6 (MGMT of 5-Guess Maximum). Then I want
 	//					to test to see if randomArray[0] is equal to any number
 	//					in guessArray using indexOf.
-	//					 
-	
+
 	function guessAttempt(){
-		if(guessArray.length<6){
+		if(guessArray.length<5){
 			if(guessArray.indexOf(+randomArray[0])!== -1){
 				$('#result').text('You guessed correctly. Nice Work!')
 			}else{
-				$('#result').text('Incorrect. Press Hint if you would like one.')
+				highOrLow(guessArray[guessArray.length-1]);
 			}
 		}else{
 			$('#result').text('Game Over. The number was '+randomArray[0]+'.')
 		}
 	};
+
+	// hint: 			Help players guess by reducing the range to guess in.
+
+	function hint(){
+		if(randomArray[0]%2===0){
+			$('#result').text("The random number is even.")
+		}else{
+			$('#result').text("The random number is odd.")
+		}
+	}
+
+	// heat: 			Tells user if the guess is "cold", "warm" or "hot"
+	//					Hot being very close
+
+	function heat(){
+		if(guessArray.indexOf(+randomArray[0])== -1){
+			if(Math.abs(randomArray[0]-guessArray[guessArray.length-1])<5){
+				$('#result').append(" You're hot!")
+			}else if(Math.abs(randomArray[0]-guessArray[guessArray.length-1])<15 && Math.abs(randomArray[0]-guessArray[guessArray.length-1])>5){
+				$('#result').append(" You're warm.")
+			}else{
+				$('#result').append(" You're cold.")
+			}
+		} else{
+			$('#result').append(" Wooo!!!")
+		}
+	}
+
+
